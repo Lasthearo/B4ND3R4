@@ -10,27 +10,7 @@
     <script src="jquery/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="head">
-        <h1>СИМУЛЯТОР ВБИВАННЯ МОСКАЛІВ</h1>
-    </div>
-    <div class="game">
-        <!-- bandera moving script -->
-        <!-- <script type="text/javascript">
-            $(document).on("click mousemove",".game",function(e){ 
-            var x = e.clientX;
-            var y = e.clientY;
-            var newposX = x - 65;
-            var newposY = y - 130; $(".bandera").css("transform","translate3d("+newposX+"px,"+newposY+"px,0px)");
-            });  
-        </script> -->
-        <!-- end of bandera moving script -->
-        <div id="bandera" class="bandera">
-
-        </div>
-        <div id="enemies">
-
-        </div>
-    </div>
+    <canvas id="canvas" width="1280" height="720"></canvas>
     <script src="script.js"></script>
 </body>
 </html>

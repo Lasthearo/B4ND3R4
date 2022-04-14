@@ -1,45 +1,7 @@
-html, body {
-    height: 90%;
-}
 body {
     background-image: url(img/bg.jpeg);
 }
 
-.head {
-    font-size: 28px;
-    text-align: center;
-    color: #fff;
-    text-shadow: 4px 4px 4px #000; 
-}
-
-.head h1 {
-    padding: 14px auto;
-    margin: auto;
-}
-
-.game {
-    background-image: url(img/game-bg.png);
-    background-size: 100% 100%;
-    /* cursor: none; */
-    position: relative;
-    display: block; 
-    height: 100%;
-    margin: auto;
-    overflow: hidden;
+#canvas {
     border: 10px #477C00 solid;
-}
-
-#bandera { 
-    position: absolute;
-    width: 85px;
-    height: 65px; 
-    background-image: url(img/stepan-bandera.png);
-    background-size: 85px 65px;
-    margin: 0;
-    transform-origin: 60% center;
-    display: block;
-    touch-action: none;
-
-    transform:translate3d(-50%,-50%,0);
-    transition:transform 0.2s cubic-bezier(.02,1.23,.79,1.08); 
 }

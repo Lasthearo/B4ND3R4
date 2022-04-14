@@ -40,6 +40,7 @@
 //   }, false);
 
 // ## Rotating with arrows code end ##
+
 var pane = $('.game'),
     box = $('#bandera'),
     maxValue = pane.width() - box.width(),
@@ -58,7 +59,7 @@ $(window).keyup(function(event) { keysPressed[event.which] = false; });
 
 setInterval(function() {
     box.css({
-        left: function(index ,oldValue) {
+        left: function(index, oldValue) {
             return calculateNewValue(oldValue, 37, 39);
         },
         top: function(index, oldValue) {

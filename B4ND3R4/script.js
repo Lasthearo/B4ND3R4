@@ -1,3 +1,5 @@
+// ## Rotating with arrows code ##
+
 // document.addEventListener('keydown', (event) => {
 //     var code = event.code;
 //     var el = document.getElementById("bandera");
@@ -37,6 +39,7 @@
 //     }
 //   }, false);
 
+// ## Rotating with arrows code end ##
 var pane = $('.game'),
     box = $('#bandera'),
     maxValue = pane.width() - box.width(),

@@ -2,6 +2,9 @@
 var cvs = document.getElementById("canvas");
 var ctx = cvs.getContext("2d");
 
+cvs.width = window.innerWidth;
+cvs.height = window.innerHeight;
+
 var player = new Image();
 var bg = new Image();
 var obstacles = new Image();
@@ -52,23 +55,25 @@ function update() {
     velX *= friction;
     x += velX;
 
-    if (x >= 1155) {
-        x = 1155;
-    } else if (x <= 5) {
-        x = 5;
+    if (x >= cvs.width - 122) {
+        x = cvs.width - 122;
+    } else if (x <= 1) {
+        x = 1;
     }
 
-    if (y > 650) {
-        y = 650;
-    } else if (y <= 5) {
-        y = 5;
+    if (y > cvs.height - 70) {
+        y = cvs.height - 70;
+    } else if (y <= 1) {
+        y = 1;
     }
 
-    ctx.clearRect(0, 0, 1280, 720);
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     ctx.drawImage(bg, 0, 0);
     ctx.drawImage(obstacles, 220, 40);
     ctx.drawImage(player, x, y);
 }
+
+setInterval(drawRandomlyColoredRectangle, 20);
 
 document.body.addEventListener("keydown", function (e) {
     keys[e.keyCode] = true;
@@ -118,18 +123,15 @@ function drawRandomlyColoredRectangle() {
         console.log("right");
     }
     
-    context.save();
-    context.clearRect(0,0,1280,720);
-    context.save();
-    context.translate(640,360);
-    context.rotate(convertToRadians(angle));
-    context.drawImage(player, -20, -25);
-    context.restore();
+    ctx.save();
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    ctx.save();
+    ctx.translate(cvs.widt / 2, cvs.height / 2);
+    ctx.rotate(convertToRadians(angle));
+    ctx.drawImage(player, -20, -25);
+    ctx.restore();
 }
 // ROTATION REALLY COOL REALISATION END
-
-var context = document.getElementById('canvas').getContext('2d');;
 var angle = 0;
-
-setInterval(drawRandomlyColoredRectangle, 20);
 update();
+

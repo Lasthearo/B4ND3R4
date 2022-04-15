@@ -1,8 +1,7 @@
 body {
-    background-image: url(img/bg.jpeg);
-    overflow: hidden;
+    margin: 0;
 }
 
-#canvas {
-    border: 10px #477C00 solid;
+.canvas {
+    display: block;
 }

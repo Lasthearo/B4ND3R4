@@ -13,10 +13,9 @@ enemies.src = "img/enemie.png";
 
 enemies.onload = draw;
 
-var deltaX = 20;
-var deltaY = 350;
-
 // Moving player 
+var deltaX = 0;
+var deltaY = 0;
 window.addEventListener ("keydown", keysPressed, false);
 window.addEventListener ("keyup", keysReleased, false);
 var keys = [];
@@ -27,26 +26,26 @@ keys[e.keyCode] = true;
 
     // left
     if (keys[37]) {
-    deltaX -= 2;
+    deltaX -= 10;
     }
     // right 
     if (keys[39]) {
-    deltaX += 2;
+    deltaX += 10;
     }
     // down
     if (keys[38]) {
-    deltaY -= 2; 
+    deltaY -= 10; 
     }
-    // wp
+    // up
     if (keys[40]) {
-    deltaY += 2;
+    deltaY += 10;
     }
     e.preventDefault();
 }
     function keysReleased (e) {
     // mark keys that were released
+        keys[e.keyCode] = false;
     }
-
 
 // DRAW THE SCENE
 function draw() {
@@ -54,3 +53,5 @@ function draw() {
     ctx.drawImage(obstacles, 220, 40);
     ctx.drawImage(player, deltaX, deltaY);
 }
+
+

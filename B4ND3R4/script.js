@@ -6,6 +6,8 @@ cvs.width = window.innerWidth;
 cvs.height = window.innerHeight;
 
 var player = new Image();
+var rotatePlug = new Image();
+var playerPlug = new Image();
 var bg = new Image();
 var obstacles = new Image();
 var enemies = new Image();
@@ -25,9 +27,20 @@ var x = 150,
     friction = 0.95,
     keys = [];
 
+update();
 function update() {
     requestAnimationFrame(update);
+    if(90 in keys && keys[90]) { //left
+        decrementAngle();
+        console.log("left");
+    }
     
+    if (88 in keys && keys[88]) { //right
+        //x += dx/5;
+        incrementAngle();
+        console.log("right");
+    }
+
     if (keys[38]) {
         if (velY > -speed) {
             velY--;
@@ -55,26 +68,31 @@ function update() {
     velX *= friction;
     x += velX;
 
-    if (x >= cvs.width - 122) {
-        x = cvs.width - 122;
-    } else if (x <= 1) {
-        x = 1;
+    if (x >= cvs.width - 20) {
+        x = cvs.width - 20;
+    } else if (x <= 100) {
+        x = 100;
     }
 
-    if (y > cvs.height - 70) {
-        y = cvs.height - 70;
-    } else if (y <= 1) {
-        y = 1;
+    if (y > cvs.height + 10) {
+        y = cvs.height + 10;
+    } else if (y <= 80) {
+        y = 80;
     }
-
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    
+    ctx.save();
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.drawImage(bg, 0, 0);
     ctx.drawImage(obstacles, 220, 40);
+    ctx.translate(x - 50, y - 40);
+    ctx.drawImage(playerPlug, x, y);
+    ctx.rotate(convertToRadians(angle));
+    ctx.translate((-x - 50), (-y - 40));
     ctx.drawImage(player, x, y);
+    ctx.restore();
 }
-
-setInterval(drawRandomlyColoredRectangle, 20);
-
+window.addEventListener('keydown', doKeyDown, true);
+window.addEventListener('keyup', doKeyUp, true);
 document.body.addEventListener("keydown", function (e) {
     keys[e.keyCode] = true;
 });
@@ -84,9 +102,7 @@ document.body.addEventListener("keyup", function (e) {
 // PLAYER MOVING REALISATION END
 
 // ROTATION COOL REALISATION START
-window.addEventListener('keydown', doKeyDown, true);
-window.addEventListener('keyup', doKeyUp, true);
-
+// setInterval(drawRandomlyColoredRectangle, 20);
 var keys = new Array();
 function doKeyDown(evt){
     keys[evt.keyCode] = true;
@@ -99,39 +115,17 @@ function convertToRadians(degree) {
 }
 
 function incrementAngle() {
-    angle += 10;
+    angle += 15;
     if(angle > 360) {
         angle -= 360;
     }
 }
 function decrementAngle(){
-    angle -= 10;
+    angle -= 15;
     if(angle < 0){
         angle += 360;
     }
 }
-
-function drawRandomlyColoredRectangle() {  
-    if(90 in keys && keys[90]) { //left
-        decrementAngle();
-        console.log("left");
-    }
-    
-    if (88 in keys && keys[88]) { //right
-        //x += dx/5;
-        incrementAngle();
-        console.log("right");
-    }
-    
-    ctx.save();
-    ctx.clearRect(0, 0, cvs.width, cvs.height);
-    ctx.save();
-    ctx.translate(cvs.widt / 2, cvs.height / 2);
-    ctx.rotate(convertToRadians(angle));
-    ctx.drawImage(player, -20, -25);
-    ctx.restore();
-}
-// ROTATION REALLY COOL REALISATION END
 var angle = 0;
-update();
+// ROTATION REALLY COOL REALISATION END
 

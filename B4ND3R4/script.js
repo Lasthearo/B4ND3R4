@@ -21,9 +21,9 @@ enemies.src = "img/enemie.png";
 // PLAYER MOVING REALISATION
 var x = 150,
     y = 150,
-    velY = 0,
-    velX = 0,
-    speed = 10,
+    velY = 15,
+    velX = 10,
+    speed = 5,
     friction = 0.95,
     keys = [];
 
@@ -68,10 +68,10 @@ function update() {
     velX *= friction;
     x += velX;
 
-    if (x >= cvs.width - 20) {
-        x = cvs.width - 20;
-    } else if (x <= 100) {
-        x = 100;
+    if (x >= cvs.width + 10) {
+        x = cvs.width + 10;
+    } else if (x <= 80) {
+        x = 80;
     }
 
     if (y > cvs.height + 10) {
@@ -79,7 +79,7 @@ function update() {
     } else if (y <= 80) {
         y = 80;
     }
-    
+
     ctx.save();
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.drawImage(bg, 0, 0);
@@ -87,10 +87,33 @@ function update() {
     ctx.translate(x - 50, y - 40);
     ctx.drawImage(playerPlug, x, y);
     ctx.rotate(convertToRadians(angle));
-    ctx.translate((-x - 50), (-y - 40));
+    ctx.translate(-x - 50, -y - 40);
     ctx.drawImage(player, x, y);
     ctx.restore();
 }
+
+//SHOOTING REALISATION 
+function bullet(B){
+    B.width = 3;
+    B.height = 3;
+    B.color = "#000";
+    B.draw = function(){
+        canvas.fillStyle = this.color;
+        canvas.fillRect(this.x, this.y, this.width, this.height);
+    };
+    B.explode = function(){
+        setTimeout(function(){
+            B.active = true;
+        },100);
+    };
+    B.active = false;
+    return B;
+}
+
+// 
+
+//SHOOTING REALISATION END
+
 window.addEventListener('keydown', doKeyDown, true);
 window.addEventListener('keyup', doKeyUp, true);
 document.body.addEventListener("keydown", function (e) {
@@ -115,13 +138,13 @@ function convertToRadians(degree) {
 }
 
 function incrementAngle() {
-    angle += 15;
+    angle += 5;
     if(angle > 360) {
         angle -= 360;
     }
 }
 function decrementAngle(){
-    angle -= 15;
+    angle -= 5;
     if(angle < 0){
         angle += 360;
     }

@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Lasthearo/B4ND3R4/issues"
   },
-  "homepage": "https://github.com/Lasthearo/B4ND3R4#readme"
+  "homepage": "https://github.com/Lasthearo/B4ND3R4#readme",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.72.0"
+  }
 }

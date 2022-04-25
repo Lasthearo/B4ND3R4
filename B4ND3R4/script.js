@@ -129,7 +129,7 @@ var bulletXpos = 0;
 var bulletYpos = 0;
 const BULLET_WIDTH = 16;
 const BULLET_HEIGHT = 6;
-var bulletSpeed = 1.09;
+var bulletSpeed = 1.08;
 
 var shooting = false; 
 var shot = false;
